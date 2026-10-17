@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Brand palette: buckeye-nut brown, leaf green, warm amber CTA.
+   Deliberately avoids Ohio State's scarlet & gray trademarks. */
+@theme {
+  --color-ink: #13201a;
+  --color-muted: #55615a;
+  --color-line: #e4e0d6;
+  --color-cream: #fbf7f0;
+  --color-sand: #f3ebdd;
+
+  --color-leaf-50: #eef7f1;
+  --color-leaf-100: #d6ecdd;
+  --color-leaf-600: #24804a;
+  --color-leaf-700: #1d6a3d;
+  --color-leaf-800: #17532f;
+  --color-leaf-900: #0f3a21;
+
+  --color-nut-500: #8a5530;
+  --color-nut-700: #5a341a;
+  --color-nut-900: #3a2010;
+
+  --color-amber-cta: #d9731f;
+  --color-amber-cta-dark: #b95e14;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-leaf-100);
+}
