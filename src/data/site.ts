@@ -6,9 +6,8 @@ export const site = {
   shortName: "Buckeye WR",
   url: "https://buckeyewr.com",
   domain: "BuckeyeWR.com",
-  // TODO: replace with the client's real phone number
-  phone: "(614) 555-0100",
-  phoneHref: "tel:+16145550100",
+  phone: "(614) 900-0389",
+  phoneHref: "tel:+16149000389",
   // TODO: confirm the inbox the client wants leads sent to
   email: "hello@buckeyewr.com",
   region: "Greater Columbus, Ohio",
