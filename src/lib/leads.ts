@@ -3,6 +3,7 @@ export type Lead = Record<string, string>;
 const LABELS: Record<string, string> = {
   valet: "Valet trash proposal",
   residential: "Residential sign-up",
+  trial: "Free trial request (ad landing page)",
   junk: "Junk removal request",
   cleaning: "Bin cleaning booking",
   vacation: "Vacation rental quote",
