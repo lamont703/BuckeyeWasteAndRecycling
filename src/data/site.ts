@@ -72,7 +72,6 @@ export const residentialPlans: Plan[] = [
       "Up to 2 collection days per week",
       "Text alerts with photo proof",
       "Holiday schedule handled automatically",
-      "20% off bin cleaning",
     ],
   },
   {
@@ -85,7 +84,6 @@ export const residentialPlans: Plan[] = [
       "Up to 2 collection days per week",
       "Long driveways and gated access",
       "Priority on-demand pickups",
-      "20% off bin cleaning",
     ],
   },
 ];

@@ -67,7 +67,7 @@ export default function BinCleaningPage() {
           <SectionHeading
             eyebrow="Book a cleaning"
             title="Get your bins on the schedule"
-            intro="Can-to-curb members on the Buckeye or Estate plan save 20% on every cleaning."
+            intro="Tell us your address and how many bins, and we'll get you on the next cleaning route."
           />
           <div className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-line sm:p-8">
             <LeadForm kind="cleaning" submitLabel="Book my cleaning" />
