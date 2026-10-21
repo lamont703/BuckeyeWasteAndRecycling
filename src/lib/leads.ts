@@ -1,8 +1,11 @@
+import { ghlConfigured, pushLeadToGhl } from "./ghl";
+
 export type Lead = Record<string, string>;
 
 const LABELS: Record<string, string> = {
   valet: "Valet trash proposal",
   residential: "Residential sign-up",
+  trial: "Free trial request (ad landing page)",
   junk: "Junk removal request",
   cleaning: "Bin cleaning booking",
   vacation: "Vacation rental quote",
@@ -26,17 +29,57 @@ export function cleanLead(input: unknown): Lead | null {
   return lead;
 }
 
+// Fields with their own column in the Supabase `leads` table; the rest go into `details`.
+const COLUMNS = new Set([
+  "kind", "name", "email", "phone", "address", "city", "zip", "message", "source", "landing_page", "referrer",
+  "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid",
+]);
+
+function toSupabaseRow(lead: Lead) {
+  const row: Record<string, unknown> = {};
+  const details: Lead = {};
+  for (const [k, v] of Object.entries(lead)) {
+    if (COLUMNS.has(k)) row[k] = v || null;
+    else details[k] = v;
+  }
+  return { ...row, details };
+}
+
 /**
  * Delivers a lead to whichever channels are configured:
+ *  - NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SECRET_KEY → row in the Supabase `leads` table
+ *  - GHL_PRIVATE_TOKEN + GHL_LOCATION_ID → GoHighLevel contact, tags, note (+ opportunity)
  *  - RESEND_API_KEY + LEAD_TO_EMAIL → email via Resend
- *  - LEAD_WEBHOOK_URL → JSON POST (GoHighLevel, Zapier, Make, etc.)
- * With neither set (local dev), the lead is only logged.
+ *  - LEAD_WEBHOOK_URL → JSON POST (GHL inbound webhook, Zapier, Make, etc.)
+ * With none set (local dev), the lead is only logged.
  */
 export async function deliverLead(lead: Lead) {
   const subject = `${LABELS[lead.kind]}: ${lead.name}${lead.zip ? ` (${lead.zip})` : ""}`;
   const tasks: Promise<unknown>[] = [];
 
-  const { RESEND_API_KEY, LEAD_TO_EMAIL, LEAD_FROM_EMAIL, LEAD_WEBHOOK_URL } = process.env;
+  if (ghlConfigured()) tasks.push(pushLeadToGhl(lead, LABELS[lead.kind]));
+
+  const { NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SECRET_KEY, RESEND_API_KEY, LEAD_TO_EMAIL, LEAD_FROM_EMAIL, LEAD_WEBHOOK_URL } =
+    process.env;
+
+  if (NEXT_PUBLIC_SUPABASE_URL && SUPABASE_SECRET_KEY) {
+    tasks.push(
+      fetch(`${NEXT_PUBLIC_SUPABASE_URL}/rest/v1/leads`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_SECRET_KEY,
+          // Legacy service_role keys are JWTs and must also be sent as a bearer token;
+          // new sb_secret_ keys work from the apikey header alone.
+          ...(SUPABASE_SECRET_KEY.startsWith("eyJ") && { Authorization: `Bearer ${SUPABASE_SECRET_KEY}` }),
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify(toSupabaseRow(lead)),
+      }).then(async (r) => {
+        if (!r.ok) throw new Error(`Supabase responded ${r.status}: ${(await r.text()).slice(0, 300)}`);
+      }),
+    );
+  }
 
   if (RESEND_API_KEY && LEAD_TO_EMAIL) {
     const text = Object.entries(lead)

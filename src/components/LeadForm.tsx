@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getAttribution } from "@/lib/attribution";
 
 export type LeadKind = "valet" | "residential" | "junk" | "cleaning" | "vacation" | "careers" | "contact";
 
@@ -81,7 +82,7 @@ export function LeadForm({
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ kind, ...extraData, ...data }),
+        body: JSON.stringify({ kind, ...getAttribution(), ...extraData, ...data }),
       });
       setState(res.ok ? "sent" : "error");
     } catch {

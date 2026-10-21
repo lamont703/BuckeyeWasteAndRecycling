@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { JsonLd } from "@/components/sections";
 import { site } from "@/data/site";
 import { localBusinessSchema } from "@/lib/seo";
@@ -36,10 +35,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
         <JsonLd data={localBusinessSchema} />
+        <AttributionCapture />
       </body>
     </html>
   );
