@@ -1,5 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { breadcrumbTrail } from "@/data/pages";
+import { breadcrumbSchema } from "@/lib/seo";
+import { JsonLd } from "./JsonLd";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-4 sm:px-6 ${className}`}>{children}</div>;
@@ -98,15 +101,45 @@ export function CheckList({ items, className = "" }: { items: string[]; classNam
   );
 }
 
+function Breadcrumbs({ path }: { path: string }) {
+  const trail = breadcrumbTrail(path);
+  return (
+    <>
+      <nav aria-label="Breadcrumb" className="mb-5">
+        <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/70">
+          {trail.map((p, i) => (
+            <li key={p.path} className="flex items-center gap-1.5">
+              {i > 0 && <span aria-hidden="true">/</span>}
+              {i === trail.length - 1 ? (
+                <span aria-current="page" className="text-white">
+                  {p.name}
+                </span>
+              ) : (
+                <Link href={p.path} className="hover:text-white hover:underline">
+                  {p.name}
+                </Link>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <JsonLd data={breadcrumbSchema(path)} />
+    </>
+  );
+}
+
 export function PageHero({
   eyebrow,
   title,
   intro,
+  path,
   children,
 }: {
   eyebrow: string;
   title: ReactNode;
   intro: ReactNode;
+  /** Page path; renders breadcrumbs (visible + BreadcrumbList structured data). */
+  path?: string;
   children?: ReactNode;
 }) {
   return (
@@ -114,6 +147,7 @@ export function PageHero({
       <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-leaf-700/40 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 left-10 h-80 w-80 rounded-full bg-nut-500/30 blur-3xl" />
       <Container className="relative py-16 sm:py-24">
+        {path && <Breadcrumbs path={path} />}
         <p className="text-sm font-semibold uppercase tracking-[0.14em] text-leaf-100">{eyebrow}</p>
         <h1 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
         <p className="mt-5 max-w-2xl text-lg text-white/80">{intro}</p>

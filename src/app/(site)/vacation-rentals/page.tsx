@@ -1,8 +1,8 @@
 import { HomeScene } from "@/components/Illustrations";
 import { LeadForm } from "@/components/LeadForm";
-import { CtaBand, FeatureGrid, SplitFeature } from "@/components/sections";
+import { CtaBand, FeatureGrid, JsonLd, SplitFeature } from "@/components/sections";
 import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, serviceSchema } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Airbnb & Vacation Rental Trash Service in Columbus, OH",
@@ -13,7 +13,7 @@ export const metadata = pageMeta(
 export default function VacationRentalsPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/vacation-rentals"
         eyebrow="Airbnb & short-term rentals"
         title="Five-star trash day for your rental properties"
         intro="Guests don't take the cans out. We do. Keep every Columbus rental guest-ready with scheduled can service and overflow pickups after big checkouts."
@@ -60,6 +60,15 @@ export default function VacationRentalsPage() {
       </Section>
 
       <CtaBand />
+
+      <JsonLd
+        data={serviceSchema({
+          name: "Vacation Rental Trash Service",
+          path: "/vacation-rentals",
+          description:
+            "Scheduled can-to-curb service and overflow pickups after checkouts for Airbnb, VRBO and short-term rental hosts in Columbus.",
+        })}
+      />
     </>
   );
 }

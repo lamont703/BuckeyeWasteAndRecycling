@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { AttributionCapture } from "@/components/AttributionCapture";
 import { JsonLd } from "@/components/sections";
 import { site } from "@/data/site";
-import { localBusinessSchema } from "@/lib/seo";
+import { localBusinessSchema, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,12 +19,24 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  category: "Waste management",
+  // Fallback for pages without pageMeta(); pageMeta() replaces these per page.
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: "en_US",
+    images: [{ url: "/og/home", width: 1200, height: 630, alt: site.name, type: "image/png" }],
   },
-  twitter: { card: "summary_large_image" },
+  twitter: { card: "summary_large_image", images: ["/og/home"] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  // Paste the codes from Google Search Console / Bing Webmaster Tools into Vercel env vars.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    ...(process.env.BING_SITE_VERIFICATION && { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }),
+  },
 };
 
 export const viewport: Viewport = {
@@ -37,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col font-sans">
         {children}
         <JsonLd data={localBusinessSchema} />
+        <JsonLd data={websiteSchema} />
         <AttributionCapture />
       </body>
     </html>

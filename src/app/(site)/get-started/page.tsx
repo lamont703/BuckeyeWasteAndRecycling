@@ -13,7 +13,7 @@ export const metadata = pageMeta(
 export default function GetStartedPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/get-started"
         eyebrow="Get started"
         title="Never take the trash out again"
         intro={`Pick a plan and tell us about your home. Your first ${site.trialDays} days are free, with no contracts and cancel anytime.`}

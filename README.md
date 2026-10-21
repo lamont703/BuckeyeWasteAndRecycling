@@ -41,7 +41,14 @@ Search the code for `TODO` to find every placeholder that must be confirmed befo
 
 ## SEO built in
 
-- Per-page titles, descriptions and canonical URLs (`src/lib/seo.ts`)
-- LocalBusiness, Service and FAQPage structured data (JSON-LD)
-- One landing page per city at `/service-area/<city>`
-- `sitemap.xml`, `robots.txt` and a generated Open Graph share image
+- **Page registry** (`src/data/pages.ts`): one entry per page drives share images, breadcrumbs, the sitemap and
+  `llms.txt`. Adding a page = add an entry + call `pageMeta()` (`src/lib/seo.ts`) in the page.
+- **Metadata**: title, description, `www` canonical, full Open Graph + Twitter/X tags on every page.
+- **Share images**: a branded 1200×630 card per page at `/og/<path>` (e.g. `/og/service-area/dublin`), prerendered.
+- **Structured data (JSON-LD)**: LocalBusiness (hours, geo, service area, plan prices), WebSite, BreadcrumbList,
+  Service with offers, FAQPage.
+- **AI search (GEO)**: `/llms.txt` plain-text brief generated from site data; `robots.txt` explicitly allows
+  GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers.
+- **Crawling**: `/sitemap.xml` (submit this in Google Search Console), human-readable `/site-map`, web app
+  manifest, Apple touch icon. Verification tags via `GOOGLE_SITE_VERIFICATION` / `BING_SITE_VERIFICATION`.
+- One landing page per city at `/service-area/<city>`. The `/free-trial` ad page is `noindex` but has share tags.

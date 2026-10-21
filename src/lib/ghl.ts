@@ -58,6 +58,22 @@ function noteBody(lead: Lead, label: string) {
   return `${label} from BuckeyeWR.com\n${lead.address ? `Address: ${lead.address}\n` : ""}${details}`;
 }
 
+const PAID_MEDIUMS = new Set(["cpc", "ppc", "paid", "paid_social", "paidsocial", "paid-social", "display", "ads"]);
+
+// Turns the ad attribution captured on the landing page into tags, so GHL can filter,
+// report and trigger workflows by channel and campaign.
+function adTags(lead: Lead) {
+  const tags: string[] = [];
+  const medium = lead.utm_medium?.toLowerCase();
+  if (lead.gclid) tags.push("google ads");
+  if (lead.fbclid) tags.push("meta ads");
+  if (lead.gclid || lead.fbclid || (medium && PAID_MEDIUMS.has(medium))) tags.push("paid ad");
+  if (lead.utm_source) tags.push(`source: ${lead.utm_source.toLowerCase()}`.slice(0, 60));
+  if (lead.utm_campaign) tags.push(`campaign: ${lead.utm_campaign.toLowerCase()}`.slice(0, 60));
+  if (tags.length === 0) tags.push("organic / direct");
+  return tags;
+}
+
 /** Upserts the contact, tags it, attaches the form details as a note, and optionally opens an opportunity. */
 export async function pushLeadToGhl(lead: Lead, label: string) {
   const locationId = process.env.GHL_LOCATION_ID!;
@@ -76,7 +92,7 @@ export async function pushLeadToGhl(lead: Lead, label: string) {
   });
 
   // Tags go through the add-tags endpoint because upsert would overwrite a returning contact's existing tags.
-  const tags = ["website lead", ...(TAGS[lead.kind] ?? [])];
+  const tags = ["website lead", ...(TAGS[lead.kind] ?? []), ...adTags(lead)];
   if (lead.plan) tags.push(`plan: ${lead.plan}`);
   // Lets GHL SMS workflows target only people who opted in to texts.
   if (lead.smsUpdates === "yes") tags.push("sms opt-in");

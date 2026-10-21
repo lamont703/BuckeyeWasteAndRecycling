@@ -4,7 +4,7 @@ import { CtaBand, FaqList, FeatureGrid, JsonLd, SplitFeature, Steps, ValetTiers 
 import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
 import { valetFaqs } from "@/data/faqs";
 import { site } from "@/data/site";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, serviceSchema } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Valet Trash Service for Apartments in Columbus, OH",
@@ -15,7 +15,7 @@ export const metadata = pageMeta(
 export default function ValetTrashPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/valet-trash"
         eyebrow="Valet trash · Multifamily"
         title="Doorstep valet trash for Columbus apartment communities"
         intro="Give residents a real amenity and give your maintenance team their evenings back. Our uniformed porters collect trash from every door, keep your property spotless and report back every night."
@@ -106,14 +106,12 @@ export default function ValetTrashPage() {
       <CtaBand title="Make trash the easiest amenity at your community" body="Join apartment communities across Central Ohio that trust Buckeye with doorstep pickup." />
 
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Valet Trash Service",
-          provider: { "@id": `${site.url}/#business` },
-          areaServed: "Columbus, OH metropolitan area",
-          url: `${site.url}/valet-trash`,
-        }}
+        data={serviceSchema({
+          name: "Valet Trash Service",
+          path: "/valet-trash",
+          description:
+            "Doorstep trash and recycling collection 3 to 7 nights a week for apartment communities in Greater Columbus, with nightly service reports and photo violation reporting. Quoted per unit, per month.",
+        })}
       />
     </>
   );

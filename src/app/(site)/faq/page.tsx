@@ -12,7 +12,7 @@ export const metadata = pageMeta(
 export default function FaqPage() {
   return (
     <>
-      <PageHero eyebrow="FAQ" title="Frequently asked questions" intro="Can't find your answer? Call or text us and a real person will help." />
+      <PageHero path="/faq" eyebrow="FAQ" title="Frequently asked questions" intro="Can't find your answer? Call or text us and a real person will help." />
       <Section>
         <div className="mx-auto max-w-3xl space-y-14">
           <div>

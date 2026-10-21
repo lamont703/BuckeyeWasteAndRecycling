@@ -15,6 +15,13 @@ import { ZipChecker } from "@/components/ZipChecker";
 import { cities } from "@/data/cities";
 import { generalFaqs } from "@/data/faqs";
 import { residentialPlans, site } from "@/data/site";
+import { pageMeta } from "@/lib/seo";
+
+export const metadata = pageMeta(
+  { absolute: `Valet Trash & Trash Can Service in Columbus, OH | ${site.name}` },
+  site.description,
+  "/",
+);
 
 const audiences = [
   { title: "Homeowners", body: "Weekly can-to-curb service so you never drag a bin down the driveway again.", href: "/can-to-curb", icon: "🏡" },

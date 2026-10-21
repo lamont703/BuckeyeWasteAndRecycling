@@ -1,9 +1,9 @@
 import { TruckScene } from "@/components/Illustrations";
 import { LeadForm } from "@/components/LeadForm";
-import { CtaBand, FeatureGrid, SplitFeature } from "@/components/sections";
+import { CtaBand, FeatureGrid, JsonLd, SplitFeature } from "@/components/sections";
 import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
 import { onDemand, site } from "@/data/site";
-import { pageMeta } from "@/lib/seo";
+import { onDemandOffer, pageMeta, serviceSchema } from "@/lib/seo";
 
 const price = onDemand.find((s) => s.name === "Junk & Bulk Removal")!.from;
 
@@ -16,7 +16,7 @@ export const metadata = pageMeta(
 export default function JunkRemovalPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/junk-removal"
         eyebrow="Junk & bulk removal"
         title="Point to it. We'll haul it."
         intro={`Furniture, appliances, yard waste, move-out leftovers and overflowing bins, usually cleared within 24 to 48 hours. Starting at $${price}.`}
@@ -72,6 +72,16 @@ export default function JunkRemovalPage() {
       </Section>
 
       <CtaBand />
+
+      <JsonLd
+        data={serviceSchema({
+          name: "Junk & Bulk Trash Removal",
+          path: "/junk-removal",
+          description:
+            "Removal of furniture, mattresses, appliances, yard waste and cleanout debris for homes, apartments and rentals, usually within 24 to 48 hours.",
+          offers: onDemandOffer("Junk & Bulk Removal"),
+        })}
+      />
     </>
   );
 }

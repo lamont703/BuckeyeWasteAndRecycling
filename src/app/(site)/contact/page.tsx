@@ -12,7 +12,7 @@ export const metadata = pageMeta(
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Talk to a real person in Columbus" intro="Questions, quotes, HOA pricing or a waitlist for your neighborhood: we usually reply within one business day." />
+      <PageHero path="/contact" eyebrow="Contact" title="Talk to a real person in Columbus" intro="Questions, quotes, HOA pricing or a waitlist for your neighborhood: we usually reply within one business day." />
       <Section id="form">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-6">

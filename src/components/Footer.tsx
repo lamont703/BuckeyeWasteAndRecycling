@@ -93,6 +93,9 @@ export function Footer() {
             <Link href="/terms" className="hover:text-white">
               Terms
             </Link>
+            <Link href="/site-map" className="hover:text-white">
+              Sitemap
+            </Link>
           </div>
         </div>
       </div>

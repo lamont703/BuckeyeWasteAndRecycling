@@ -12,7 +12,7 @@ export const metadata = pageMeta(
 export default function JoinPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/join-our-team"
         eyebrow="Careers"
         title="Earn on your schedule with Buckeye"
         intro="We're hiring dependable people across Greater Columbus for evening valet trash and can-to-curb routes. Great for students, second jobs and anyone who likes staying active."

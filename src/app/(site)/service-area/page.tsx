@@ -14,7 +14,7 @@ export const metadata = pageMeta(
 export default function ServiceAreaPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/service-area"
         eyebrow="Service area"
         title="Serving Columbus and Central Ohio"
         intro="Valet trash, can-to-curb, bin cleaning and junk removal across Franklin, Delaware, Fairfield, Licking and Union counties."

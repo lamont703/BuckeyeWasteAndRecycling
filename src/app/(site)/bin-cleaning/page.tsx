@@ -1,9 +1,9 @@
 import { BinCleanScene } from "@/components/Illustrations";
 import { LeadForm } from "@/components/LeadForm";
-import { CtaBand, FeatureGrid, SplitFeature, Steps } from "@/components/sections";
+import { CtaBand, FeatureGrid, JsonLd, SplitFeature, Steps } from "@/components/sections";
 import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
 import { onDemand } from "@/data/site";
-import { pageMeta } from "@/lib/seo";
+import { onDemandOffer, pageMeta, serviceSchema } from "@/lib/seo";
 
 const price = onDemand.find((s) => s.name === "Bin Cleaning")!.from;
 
@@ -16,7 +16,7 @@ export const metadata = pageMeta(
 export default function BinCleaningPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/bin-cleaning"
         eyebrow="Bin cleaning"
         title="Say goodbye to stinky, buggy trash cans"
         intro={`We pressure-wash, sanitize and deodorize your bins right at the curb on pickup day. Starting at $${price} for your first two bins.`}
@@ -76,6 +76,16 @@ export default function BinCleaningPage() {
       </Section>
 
       <CtaBand />
+
+      <JsonLd
+        data={serviceSchema({
+          name: "Trash Bin Cleaning",
+          path: "/bin-cleaning",
+          description:
+            "Curbside hot-water pressure washing, sanitizing and deodorizing of trash and recycling bins, one-time, monthly or quarterly.",
+          offers: onDemandOffer("Bin Cleaning"),
+        })}
+      />
     </>
   );
 }

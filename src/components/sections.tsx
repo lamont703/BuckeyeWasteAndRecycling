@@ -1,16 +1,10 @@
 import Link from "next/link";
 import type { Faq } from "@/data/faqs";
 import { onDemand, residentialPlans, site, valetTiers } from "@/data/site";
+import { JsonLd } from "./JsonLd";
 import { Button, CheckList, Container, SectionHeading } from "./ui";
 
-export function JsonLd({ data }: { data: object }) {
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
-    />
-  );
-}
+export { JsonLd };
 
 export function TrustBar() {
   return (

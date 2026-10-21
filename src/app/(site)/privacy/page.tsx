@@ -8,7 +8,7 @@ export const metadata = pageMeta("Privacy Policy", `How ${site.name} collects an
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero eyebrow="Legal" title="Privacy Policy" intro="Draft — pending legal review." />
+      <PageHero path="/privacy" eyebrow="Legal" title="Privacy Policy" intro="Draft — pending legal review." />
       <Section>
         <div className="mx-auto max-w-3xl space-y-5 leading-7 text-muted">
           <p>

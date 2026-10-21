@@ -6,7 +6,7 @@ import { CtaBand, FaqList, JsonLd, OnDemandCards, ResidentialPricing, SplitFeatu
 import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
 import { cities, getCity } from "@/data/cities";
 import { residentialPlans, site } from "@/data/site";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, planOffers, serviceSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
   return cities.map((c) => ({ slug: c.slug }));
@@ -47,7 +47,7 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
 
   return (
     <>
-      <PageHero
+      <PageHero path={`/service-area/${city.slug}`}
         eyebrow={`${city.name}, Ohio · ${city.county}`}
         title={`Trash day, handled in ${city.name}`}
         intro={city.intro}
@@ -112,14 +112,13 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
       <CtaBand title={`Ready for easier trash days in ${city.name}?`} />
 
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Trash Can to Curb and Valet Trash Service",
-          provider: { "@id": `${site.url}/#business` },
-          areaServed: { "@type": "City", name: `${city.name}, OH` },
-          url: `${site.url}/service-area/${city.slug}`,
-        }}
+        data={serviceSchema({
+          name: `Trash Can to Curb and Valet Trash Service in ${city.name}, OH`,
+          path: `/service-area/${city.slug}`,
+          description: `Trash can to curb service, apartment valet trash, bin cleaning and junk removal in ${city.name}, Ohio (ZIP ${city.zips.join(", ")}).`,
+          area: `${city.name}, OH`,
+          offers: planOffers,
+        })}
       />
     </>
   );
