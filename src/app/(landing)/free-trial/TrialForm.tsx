@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { getAttribution } from "@/lib/attribution";
 
 const inputCls =
   "mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-leaf-600 focus:ring-2 focus:ring-leaf-100";
@@ -94,7 +95,7 @@ export function TrialForm({ trialDays }: { trialDays: number }) {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ kind: "trial", source: "free-trial landing page", ...data }),
+        body: JSON.stringify({ kind: "trial", source: "free-trial landing page", ...getAttribution(), ...data }),
       });
       setState(res.ok ? "sent" : "error");
       if (res.ok) top.current?.scrollIntoView({ behavior: "smooth", block: "start" });

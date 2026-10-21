@@ -27,8 +27,15 @@ Search the code for `TODO` to find every placeholder that must be confirmed befo
 
 ## Forms & payments
 
-- All forms POST to `/api/lead`, which emails the lead (Resend) and/or forwards it to a webhook
-  (e.g. GoHighLevel). See `.env.example`.
+- All forms POST to `/api/lead`, which delivers the lead to every configured channel (see `.env.example`):
+  - **Supabase**: every lead becomes a row in the `leads` table, with ad attribution (UTM tags, `gclid`,
+    `fbclid`, landing page) captured on the visitor's first page. Schema: `supabase/migrations`; apply with
+    `supabase db push`.
+  - **GoHighLevel** (`src/lib/ghl.ts`): upserts the contact, adds tags (`website lead`, plus the service,
+    e.g. `valet trash`, `free trial`), attaches every form answer as a note, and, if `GHL_PIPELINE_ID` is set,
+    opens an opportunity. Build GHL workflows off those tags to text/email new leads automatically.
+  - Email via Resend, and/or a generic JSON webhook.
+- A lead only fails if every configured channel fails, so one outage doesn't lose it.
 - The residential sign-up (`/get-started`) opens Stripe Checkout with a free trial when `STRIPE_SECRET_KEY`
   and the three `STRIPE_PRICE_*` variables are set. Otherwise it falls back to a lead submission.
 

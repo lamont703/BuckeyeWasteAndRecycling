@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import { JsonLd } from "@/components/sections";
 import { site } from "@/data/site";
 import { localBusinessSchema } from "@/lib/seo";
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col font-sans">
         {children}
         <JsonLd data={localBusinessSchema} />
+        <AttributionCapture />
       </body>
     </html>
   );

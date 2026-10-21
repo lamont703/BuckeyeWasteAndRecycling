@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Check } from "@/components/ui";
+import { getAttribution } from "@/lib/attribution";
 import { findCityByZip } from "@/data/cities";
 import { residentialPlans, site, type Plan } from "@/data/site";
 
@@ -28,6 +29,7 @@ export function SignupForm() {
     setState("sending");
     const fd = new FormData(e.currentTarget);
     const payload = {
+      ...getAttribution(),
       ...Object.fromEntries(fd),
       days: fd.getAll("days").join(", "),
       plan: oneTime ? "one-time" : plan,
