@@ -8,7 +8,7 @@ export const metadata = pageMeta("Terms of Service", `Terms for ${site.name} ser
 export default function TermsPage() {
   return (
     <>
-      <PageHero eyebrow="Legal" title="Terms of Service" intro="Draft — pending legal review." />
+      <PageHero path="/terms" eyebrow="Legal" title="Terms of Service" intro="Draft — pending legal review." />
       <Section>
         <div className="mx-auto max-w-3xl space-y-5 leading-7 text-muted">
           <p>

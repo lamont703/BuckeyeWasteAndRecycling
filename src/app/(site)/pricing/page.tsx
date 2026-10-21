@@ -13,7 +13,7 @@ export const metadata = pageMeta(
 export default function PricingPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/pricing"
         eyebrow="Pricing"
         title="Straightforward pricing. No contracts."
         intro={`Every residential plan starts with ${site.trialDays} days free. Apartment communities get custom per-unit pricing.`}

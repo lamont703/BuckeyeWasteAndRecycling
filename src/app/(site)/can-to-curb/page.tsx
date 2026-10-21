@@ -4,7 +4,7 @@ import { Button, PageHero, Section, SectionHeading } from "@/components/ui";
 import { ZipChecker } from "@/components/ZipChecker";
 import { residentialFaqs } from "@/data/faqs";
 import { site } from "@/data/site";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta, planOffers, serviceSchema } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Trash Can to Curb Service in Columbus, OH",
@@ -15,7 +15,7 @@ export const metadata = pageMeta(
 export default function CanToCurbPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/can-to-curb"
         eyebrow="Trash can to curb"
         title="Your cans out. Your cans back. Every single week."
         intro="We roll your trash and recycling to the curb the evening before pickup and bring them back after the truck comes. You get a photo text every time."
@@ -99,14 +99,13 @@ export default function CanToCurbPage() {
       <CtaBand />
 
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          serviceType: "Trash Can to Curb Service",
-          provider: { "@id": `${site.url}/#business` },
-          areaServed: "Columbus, OH metropolitan area",
-          url: `${site.url}/can-to-curb`,
-        }}
+        data={serviceSchema({
+          name: "Trash Can to Curb Service",
+          path: "/can-to-curb",
+          description:
+            "Weekly service that rolls trash and recycling cans to the curb the evening before pickup and returns them after collection, with a photo text every visit.",
+          offers: planOffers,
+        })}
       />
     </>
   );

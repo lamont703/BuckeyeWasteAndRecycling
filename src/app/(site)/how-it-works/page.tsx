@@ -13,7 +13,7 @@ export const metadata = pageMeta(
 export default function HowItWorksPage() {
   return (
     <>
-      <PageHero
+      <PageHero path="/how-it-works"
         eyebrow="How it works"
         title="Trash day, handled from start to finish"
         intro="Whether you own a home in Dublin or manage 300 units in Hilliard, setup takes minutes and service runs on autopilot."

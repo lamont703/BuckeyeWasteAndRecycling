@@ -8,16 +8,18 @@ import { CheckList, Container, Section, SectionHeading } from "@/components/ui";
 import { cities } from "@/data/cities";
 import type { Faq } from "@/data/faqs";
 import { residentialPlans, site } from "@/data/site";
+import { pageMeta } from "@/lib/seo";
 import { TrialForm } from "./TrialForm";
 
 // Paid-ad landing page. Every link stays on this page (anchors) except click-to-call,
 // and it's kept out of search so it doesn't compete with /can-to-curb.
-export const metadata: Metadata = {
-  title: "Make Trash Day Easier: Try Us Free for 2 Weeks",
-  description:
-    "We roll your trash and recycling bins to the curb and bring them back after pickup. Columbus, Ohio and nearby suburbs. Try it free for 2 weeks, no payment required.",
-  robots: { index: false, follow: false },
-};
+// Kept out of search (noindex) but with full share tags, since ad clicks and shared links land here.
+export const metadata: Metadata = pageMeta(
+  "Make Trash Day Easier: Try Us Free for 2 Weeks",
+  "We roll your trash and recycling bins to the curb and bring them back after pickup. Columbus, Ohio and nearby suburbs. Try it free for 2 weeks, no payment required.",
+  "/free-trial",
+  { noindex: true },
+);
 
 const weeks = Math.round(site.trialDays / 7);
 

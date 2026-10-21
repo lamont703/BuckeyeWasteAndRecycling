@@ -4,7 +4,8 @@
 export const site = {
   name: "Buckeye Waste and Recycling",
   shortName: "Buckeye WR",
-  url: "https://buckeyewr.com",
+  // Canonical origin. buckeyewr.com 308-redirects here, so canonicals and share images must use www.
+  url: "https://www.buckeyewr.com",
   domain: "BuckeyeWR.com",
   phone: "(614) 900-0389",
   phoneHref: "tel:+16149000389",
@@ -12,6 +13,12 @@ export const site = {
   email: "hello@buckeyewr.com",
   region: "Greater Columbus, Ohio",
   hours: "Mon–Sat, 8am–6pm",
+  // Machine-readable version of `hours` for structured data. Keep the two in sync.
+  hoursSpec: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" },
+  // Center of the service area (downtown Columbus) and how far out it reaches, for local search.
+  geo: { latitude: 39.9612, longitude: -82.9988, radiusMeters: 48000 },
+  // Bump when page content changes meaningfully; feeds the sitemap and llms.txt.
+  updated: "2026-10-21",
   tagline: "Central Ohio's trash day, handled.",
   description:
     "Locally owned valet trash, trash can to curb, bin cleaning and junk removal for homes, apartments and rentals across Columbus, Ohio and its suburbs.",
