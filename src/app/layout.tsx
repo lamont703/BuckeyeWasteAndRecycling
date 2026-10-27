@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { AttributionCapture } from "@/components/AttributionCapture";
+import { WebVitals } from "@/components/PixelEvents";
 import { JsonLd } from "@/components/sections";
 import { site } from "@/data/site";
 import { localBusinessSchema, websiteSchema } from "@/lib/seo";
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={localBusinessSchema} />
         <JsonLd data={websiteSchema} />
         <AttributionCapture />
+        <WebVitals />
       </body>
     </html>
   );
