@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { getAttribution } from "@/lib/attribution";
+import { getLeadContext } from "@/lib/attribution";
+import { track } from "@/lib/pixel";
 
 export type LeadKind = "valet" | "residential" | "junk" | "cleaning" | "vacation" | "careers" | "contact";
 
@@ -82,11 +83,13 @@ export function LeadForm({
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ kind, ...getAttribution(), ...extraData, ...data }),
+        body: JSON.stringify({ kind, ...getLeadContext(), ...extraData, ...data }),
       });
       setState(res.ok ? "sent" : "error");
+      track(res.ok ? "lead_submitted" : "lead_failed", { form: `lead:${kind}`, lead_kind: kind, status: res.status });
     } catch {
       setState("error");
+      track("lead_failed", { form: `lead:${kind}`, lead_kind: kind, status: 0 });
     }
   }
 
@@ -100,7 +103,7 @@ export function LeadForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+    <form onSubmit={onSubmit} data-form={`lead:${kind}`} className="grid gap-4 sm:grid-cols-2">
       {/* Honeypot: real visitors never see or fill this. */}
       <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       {fields.map((f) => (

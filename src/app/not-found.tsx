@@ -1,5 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { TrackOnView } from "@/components/PixelEvents";
 import { Button, Section } from "@/components/ui";
 
 // Lives outside the (site) group, so it renders the site chrome itself.
@@ -25,6 +26,7 @@ export default function NotFound() {
         </Section>
       </main>
       <Footer />
+      <TrackOnView event="page_not_found" />
     </>
   );
 }

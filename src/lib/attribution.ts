@@ -1,6 +1,8 @@
 // Ad attribution (UTM tags, Google/Meta click IDs). Captured on the first page a visitor
 // lands on and kept for the session, so a lead submitted pages later still credits the ad.
 
+import { pixelIds } from "./pixel";
+
 const KEY = "buckeye_attribution";
 const PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
@@ -29,4 +31,9 @@ export function getAttribution(): Record<string, string> {
     if (stored) return JSON.parse(stored);
   } catch {}
   return fromCurrentUrl();
+}
+
+/** Attribution plus pixel IDs, sent with every lead so it joins to the visitor's journey in `pixel_events`. */
+export function getLeadContext(): Record<string, string> {
+  return { ...getAttribution(), ...pixelIds(), form_page: window.location.pathname };
 }

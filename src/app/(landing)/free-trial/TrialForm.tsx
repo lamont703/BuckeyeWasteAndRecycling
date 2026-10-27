@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { getAttribution } from "@/lib/attribution";
+import { getLeadContext } from "@/lib/attribution";
+import { track } from "@/lib/pixel";
 
 const inputCls =
   "mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-leaf-600 focus:ring-2 focus:ring-leaf-100";
@@ -95,12 +96,14 @@ export function TrialForm({ trialDays }: { trialDays: number }) {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ kind: "trial", source: "free-trial landing page", ...getAttribution(), ...data }),
+        body: JSON.stringify({ kind: "trial", source: "free-trial landing page", ...getLeadContext(), ...data }),
       });
       setState(res.ok ? "sent" : "error");
+      track(res.ok ? "lead_submitted" : "lead_failed", { form: "trial", lead_kind: "trial", status: res.status });
       if (res.ok) top.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch {
       setState("error");
+      track("lead_failed", { form: "trial", lead_kind: "trial", status: 0 });
     }
   }
 
@@ -120,7 +123,7 @@ export function TrialForm({ trialDays }: { trialDays: number }) {
           </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="space-y-8">
+        <form onSubmit={onSubmit} data-form="trial" className="space-y-8">
           {/* Honeypot: real visitors never see or fill this. */}
           <input type="text" name="company_website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 

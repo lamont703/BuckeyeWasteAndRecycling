@@ -3,7 +3,8 @@
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Check } from "@/components/ui";
-import { getAttribution } from "@/lib/attribution";
+import { getLeadContext } from "@/lib/attribution";
+import { track } from "@/lib/pixel";
 import { findCityByZip } from "@/data/cities";
 import { residentialPlans, site, type Plan } from "@/data/site";
 
@@ -29,7 +30,7 @@ export function SignupForm() {
     setState("sending");
     const fd = new FormData(e.currentTarget);
     const payload = {
-      ...getAttribution(),
+      ...getLeadContext(),
       ...Object.fromEntries(fd),
       days: fd.getAll("days").join(", "),
       plan: oneTime ? "one-time" : plan,
@@ -47,6 +48,7 @@ export function SignupForm() {
         if (res.ok) {
           const { url } = await res.json();
           if (url) {
+            track("checkout_redirect", { form: "signup", plan });
             window.location.href = url;
             return;
           }
@@ -58,8 +60,10 @@ export function SignupForm() {
         body: JSON.stringify(payload),
       });
       setState(lead.ok ? "sent" : "error");
+      track(lead.ok ? "lead_submitted" : "lead_failed", { form: "signup", lead_kind: "residential", plan: payload.plan, status: lead.status });
     } catch {
       setState("error");
+      track("lead_failed", { form: "signup", lead_kind: "residential", plan: payload.plan, status: 0 });
     }
   }
 
@@ -79,7 +83,7 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+    <form onSubmit={onSubmit} data-form="signup" className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
       <div className="space-y-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-line sm:p-8">
         {oneTime ? (
           <div className="rounded-2xl bg-leaf-50 p-5 ring-1 ring-leaf-100">

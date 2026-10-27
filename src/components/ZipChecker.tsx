@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { findCityByZip } from "@/data/cities";
+import { track } from "@/lib/pixel";
 
 type Result = { status: "yes"; city: string; slug: string } | { status: "no"; zip: string } | null;
 
@@ -16,11 +17,12 @@ export function ZipChecker({ dark = false }: { dark?: boolean }) {
     if (!/^\d{5}$/.test(clean)) return;
     const city = findCityByZip(clean);
     setResult(city ? { status: "yes", city: city.name, slug: city.slug } : { status: "no", zip: clean });
+    track("zip_check", { zip: clean, in_area: !!city, city: city?.name });
   }
 
   return (
     <div className="w-full max-w-md">
-      <form onSubmit={check} className="flex gap-2 rounded-full bg-white p-1.5 shadow-lg ring-1 ring-line">
+      <form onSubmit={check} data-form="zip-check" className="flex gap-2 rounded-full bg-white p-1.5 shadow-lg ring-1 ring-line">
         <label htmlFor="zip" className="sr-only">
           ZIP code
         </label>

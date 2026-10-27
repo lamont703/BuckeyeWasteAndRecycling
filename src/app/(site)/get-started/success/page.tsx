@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { TrackOnView } from "@/components/PixelEvents";
 import { Button, Section } from "@/components/ui";
 import { site } from "@/data/site";
 
@@ -23,6 +24,7 @@ export default function SuccessPage() {
           Back to home
         </Button>
       </div>
+      <TrackOnView event="trial_started" props={{ value: 0, via: "stripe_checkout" }} />
     </Section>
   );
 }
