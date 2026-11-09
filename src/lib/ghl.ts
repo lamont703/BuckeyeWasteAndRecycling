@@ -94,6 +94,9 @@ export async function pushLeadToGhl(lead: Lead, label: string) {
   // Tags go through the add-tags endpoint because upsert would overwrite a returning contact's existing tags.
   const tags = ["website lead", ...(TAGS[lead.kind] ?? []), ...adTags(lead)];
   if (lead.plan) tags.push(`plan: ${lead.plan}`);
+  // /get-started signs people up for the same free 2-week trial as the ad page, so GHL's
+  // free-trial automation must see them too. One-time service requests aren't trials.
+  if (lead.kind === "residential" && lead.plan !== "one-time" && !tags.includes("free trial")) tags.push("free trial");
   // Lets GHL SMS workflows target only people who opted in to texts.
   if (lead.smsUpdates === "yes") tags.push("sms opt-in");
   await ghl(`/contacts/${contact.id}/tags`, { tags });
