@@ -12,16 +12,16 @@ export const site = {
   // TODO: confirm the inbox the client wants leads sent to
   email: "hello@buckeyewr.com",
   region: "Greater Columbus, Ohio",
-  hours: "Mon–Sat, 8am–6pm",
+  hours: "Mon–Fri, 9am–5pm",
   // Machine-readable version of `hours` for structured data. Keep the two in sync.
-  hoursSpec: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "08:00", closes: "18:00" },
+  hoursSpec: { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "17:00" },
   // Center of the service area (downtown Columbus) and how far out it reaches, for local search.
   geo: { latitude: 39.9612, longitude: -82.9988, radiusMeters: 48000 },
   // Bump when page content changes meaningfully; feeds the sitemap and llms.txt.
   updated: "2026-10-21",
   tagline: "Central Ohio's trash day, handled.",
   description:
-    "Locally owned valet trash, trash can to curb, bin cleaning and junk removal for homes, apartments and rentals across Columbus, Ohio and its suburbs.",
+    "Locally owned Columbus, Ohio company providing reliable trash can-to-curb and valet trash services for homeowners, apartment communities, and rental properties throughout Columbus and surrounding suburbs.",
   // TODO: add real profile URLs once created
   social: {
     facebook: "",
@@ -155,8 +155,6 @@ export const nav = [
     children: [
       { label: "Valet Trash (Apartments)", href: "/valet-trash" },
       { label: "Trash Can to Curb", href: "/can-to-curb" },
-      { label: "Bin Cleaning", href: "/bin-cleaning" },
-      { label: "Junk & Bulk Removal", href: "/junk-removal" },
       { label: "Vacation Rentals", href: "/vacation-rentals" },
     ],
   },

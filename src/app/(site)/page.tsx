@@ -100,7 +100,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-6">
-          <OnDemandCards />
+          <OnDemandCards exclude={["Bin Cleaning", "Junk & Bulk Removal"]} />
         </div>
       </Section>
 

@@ -90,10 +90,10 @@ export function ValetTiers() {
   );
 }
 
-export function OnDemandCards() {
+export function OnDemandCards({ exclude = [] }: { exclude?: string[] } = {}) {
   return (
     <div className="grid gap-6 md:grid-cols-3">
-      {onDemand.map((s) => (
+      {onDemand.filter((s) => !exclude.includes(s.name)).map((s) => (
         <Link
           key={s.name}
           href={s.href}
