@@ -7,8 +7,8 @@ import { site } from "@/data/site";
 import { pageMeta, serviceSchema } from "@/lib/seo";
 
 export const metadata = pageMeta(
-  "Valet Trash Service for Apartments in Columbus, OH",
-  "Doorstep valet trash and recycling collection for apartment communities across Columbus, Dublin, Hilliard, Westerville and Central Ohio. Request a free proposal.",
+  "Apartment Valet Trash & Trash Pickup Service in Columbus, OH",
+  "Doorstep valet trash and recycling pickup for apartment communities across Columbus, Dublin, Hilliard, Westerville and Central Ohio. Quoted per unit, per month. Request a free proposal.",
   "/valet-trash",
 );
 

@@ -46,14 +46,6 @@ export const staticPages: PageInfo[] = [
     priority: 0.9,
   },
   {
-    path: "/bin-cleaning",
-    name: "Bin Cleaning",
-    ogEyebrow: "Trash bin cleaning",
-    ogTitle: "Washed, sanitized and deodorized at your curb",
-    summary: "Curbside hot-water trash bin cleaning: one-time, monthly or quarterly.",
-    priority: 0.8,
-  },
-  {
     path: "/junk-removal",
     name: "Junk & Bulk Removal",
     ogEyebrow: "Junk & bulk removal",

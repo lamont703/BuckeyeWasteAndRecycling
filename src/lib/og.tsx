@@ -66,7 +66,7 @@ export function renderOgImage({ eyebrow, title }: { eyebrow: string; title: stri
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 28 }}>
-          <div style={{ display: "flex", color: "#d6ecdd" }}>Valet trash · Can-to-curb · Bin cleaning · Junk removal</div>
+          <div style={{ display: "flex", color: "#d6ecdd" }}>Valet trash · Trash can to curb · Greater Columbus</div>
           <div style={{ display: "flex", fontWeight: 700, background: "#d9731f", borderRadius: 999, padding: "10px 24px" }}>
             {site.domain}
           </div>

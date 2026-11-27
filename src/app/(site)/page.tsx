@@ -47,8 +47,8 @@ export default function Home() {
               Never take the trash out <span className="text-leaf-700">again.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-muted">
-              Buckeye rolls your cans to the curb and back, collects apartment trash right from residents&apos; doors, scrubs
-              smelly bins and hauls away junk. All by a local, background-checked Columbus team.
+              Buckeye rolls your cans to the curb and back, and collects apartment trash right from
+              residents&apos; doors. All by a local, background-checked Columbus team.
             </p>
             <div className="mt-8">
               <ZipChecker />
@@ -100,7 +100,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-6">
-          <OnDemandCards exclude={["Bin Cleaning", "Junk & Bulk Removal"]} />
+          <OnDemandCards exclude={["Junk & Bulk Removal"]} />
         </div>
       </Section>
 

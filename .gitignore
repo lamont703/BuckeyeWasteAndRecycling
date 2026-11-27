@@ -52,3 +52,6 @@ Thumbs.db
 *.log
 .eslintcache
 .turbo
+
+# Search Console / analytics exports (client data)
+*-Performance-on-Search-*.zip

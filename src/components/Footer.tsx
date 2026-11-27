@@ -10,7 +10,6 @@ const columns = [
     links: [
       { label: "Valet Trash", href: "/valet-trash" },
       { label: "Trash Can to Curb", href: "/can-to-curb" },
-      { label: "Bin Cleaning", href: "/bin-cleaning" },
       { label: "Junk & Bulk Removal", href: "/junk-removal" },
       { label: "Vacation Rentals", href: "/vacation-rentals" },
     ],

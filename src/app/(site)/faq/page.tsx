@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Frequently Asked Questions",
-  "Answers about trash can to curb service, valet trash for apartments, bin cleaning and junk removal in Columbus, Ohio.",
+  "Answers about trash can to curb service, valet trash for apartments, pickup days and holiday weeks in Columbus, Ohio.",
   "/faq",
 );
 

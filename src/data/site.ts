@@ -18,15 +18,15 @@ export const site = {
   // Center of the service area (downtown Columbus) and how far out it reaches, for local search.
   geo: { latitude: 39.9612, longitude: -82.9988, radiusMeters: 48000 },
   // Bump when page content changes meaningfully; feeds the sitemap and llms.txt.
-  updated: "2026-10-21",
+  updated: "2026-11-27",
   tagline: "Central Ohio's trash day, handled.",
   description:
     "Locally owned Columbus, Ohio company providing reliable trash can-to-curb and valet trash services for homeowners, apartment communities, and rental properties throughout Columbus and surrounding suburbs.",
-  // TODO: add real profile URLs once created
+  // TODO: add real Facebook/Instagram profile URLs once created
   social: {
     facebook: "",
     instagram: "",
-    google: "",
+    google: "https://maps.google.com/?cid=115958296317043345",
   },
   // TODO: confirm every claim here is true (e.g. insurance) before launch
   trustPoints: [
@@ -96,13 +96,6 @@ export const onDemand = [
     unit: "per visit",
     href: "/get-started?service=one-time",
     description: "Out of town or just one busy week? We'll roll your cans out and back, no subscription.",
-  },
-  {
-    name: "Bin Cleaning",
-    from: 45,
-    unit: "first 2 bins",
-    href: "/bin-cleaning",
-    description: "Hot-water pressure wash, sanitize and deodorize, right at your curb.",
   },
   {
     name: "Junk & Bulk Removal",

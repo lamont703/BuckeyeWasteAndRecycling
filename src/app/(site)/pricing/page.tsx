@@ -5,8 +5,8 @@ import { site } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta(
-  "Pricing for Trash Can, Valet Trash & Bin Cleaning Service",
-  "Simple monthly plans for trash can to curb service in Columbus, OH, plus on-demand bin cleaning, junk removal and custom valet trash pricing for apartments.",
+  "Pricing for Trash Can to Curb & Valet Trash Service",
+  "Simple monthly plans for trash can to curb service in Columbus, OH, one-time curb visits, junk removal and custom per-unit valet trash pricing for apartments.",
   "/pricing",
 );
 
