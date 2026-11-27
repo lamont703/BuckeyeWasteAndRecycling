@@ -46,14 +46,6 @@ export const staticPages: PageInfo[] = [
     priority: 0.9,
   },
   {
-    path: "/junk-removal",
-    name: "Junk & Bulk Removal",
-    ogEyebrow: "Junk & bulk removal",
-    ogTitle: "Point to it. We'll haul it.",
-    summary: "Furniture, appliance, yard waste and cleanout hauling, usually within 24 to 48 hours.",
-    priority: 0.8,
-  },
-  {
     path: "/vacation-rentals",
     name: "Vacation Rentals",
     ogEyebrow: "Airbnb & short-term rentals",

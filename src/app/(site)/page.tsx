@@ -26,7 +26,7 @@ export const metadata = pageMeta(
 const audiences = [
   { title: "Homeowners", body: "Weekly can-to-curb service so you never drag a bin down the driveway again.", href: "/can-to-curb", icon: "🏡" },
   { title: "Apartment Communities", body: "Doorstep valet trash that residents love and that keeps your breezeways clean.", href: "/valet-trash", icon: "🏢" },
-  { title: "Property Managers", body: "One partner for valet trash, bulk pickups and move-out cleanouts across your portfolio.", href: "/valet-trash", icon: "📋" },
+  { title: "Property Managers", body: "One valet trash partner for every community in your portfolio, with nightly service reports.", href: "/valet-trash", icon: "📋" },
   { title: "Airbnb & Rentals", body: "Cans out on time between guests, with overflow handled after checkouts.", href: "/vacation-rentals", icon: "🔑" },
   { title: "HOAs & Neighborhoods", body: "Keep streets tidy and cans out of sight with community-wide pricing.", href: "/contact#form", icon: "🌳" },
   { title: "Seniors & Busy Families", body: "Heavy cans, icy driveways and late nights are our problem now, not yours.", href: "/can-to-curb", icon: "💪" },
@@ -100,7 +100,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="mt-6">
-          <OnDemandCards exclude={["Junk & Bulk Removal"]} />
+          <OnDemandCards />
         </div>
       </Section>
 
@@ -127,7 +127,7 @@ export default function Home() {
           bullets={[
             "Doorstep pickup 3 to 7 nights a week",
             "Photo violation reports for lease enforcement",
-            "Recycling, bulk pickup and pet station add-ons",
+            "Recycling and pet station add-ons",
             "Local Columbus team with real-time response",
           ]}
           visual={<ApartmentScene className="w-full drop-shadow-xl" />}

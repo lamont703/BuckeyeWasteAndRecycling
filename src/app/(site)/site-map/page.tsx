@@ -14,7 +14,7 @@ export const metadata = pageMeta(
 );
 
 const groups: { title: string; paths: string[] }[] = [
-  { title: "Services", paths: ["/valet-trash", "/can-to-curb", "/junk-removal", "/vacation-rentals"] },
+  { title: "Services", paths: ["/valet-trash", "/can-to-curb", "/vacation-rentals"] },
   { title: "Plans & sign-up", paths: ["/pricing", "/how-it-works", "/get-started"] },
   { title: "Help & company", paths: ["/", "/faq", "/contact", "/join-our-team", "/privacy", "/terms"] },
 ];

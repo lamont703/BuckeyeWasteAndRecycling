@@ -67,7 +67,7 @@ export default function ValetTrashPage() {
             { icon: "🦺", title: "Uniformed, vetted porters", body: "Background-checked team members who represent your community well." },
             { icon: "📸", title: "Violation reporting", body: "Photos of rule violations so your office can enforce the resident agreement." },
             { icon: "♻️", title: "Recycling collection", body: "Doorstep recycling pickup alongside trash to support your sustainability goals." },
-            { icon: "🛋️", title: "Bulk item removal", body: "Couches, mattresses and move-out piles cleared before they become a problem." },
+            { icon: "🧹", title: "Compactor area tidy-up", body: "Stray bags and litter around the compactor and dumpster area cleared on every visit." },
             { icon: "🐾", title: "Pet waste stations", body: "Stations emptied and restocked so your grounds stay clean." },
             { icon: "📍", title: "Local management", body: "A Columbus-based account manager you can actually reach." },
           ]}

@@ -30,7 +30,6 @@ ${site.name} (${site.shortName}) is a locally owned trash service company based 
 
 - [Valet trash for apartments](${link("/valet-trash")}): doorstep trash and recycling pickup 3 to 7 nights a week for apartment and townhome communities, with nightly service reports and photo violation reporting. Quoted per unit, per month.
 - [Trash can to curb](${link("/can-to-curb")}): cans rolled to the curb the evening before pickup and returned after collection, with a photo text each visit.
-- [Junk & bulk removal](${link("/junk-removal")}): furniture, appliances, yard waste and cleanouts, usually within 24 to 48 hours. No hazardous materials.
 - [Vacation rentals](${link("/vacation-rentals")}): can service and overflow pickups for Airbnb and VRBO hosts.
 
 ## Pricing

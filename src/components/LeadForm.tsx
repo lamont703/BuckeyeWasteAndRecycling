@@ -4,7 +4,7 @@ import { useState } from "react";
 import { getLeadContext } from "@/lib/attribution";
 import { track } from "@/lib/pixel";
 
-export type LeadKind = "valet" | "residential" | "junk" | "cleaning" | "vacation" | "careers" | "contact";
+export type LeadKind = "valet" | "residential" | "vacation" | "careers" | "contact";
 
 type Field = {
   name: string;
@@ -33,15 +33,6 @@ const extras: Record<LeadKind, Field[]> = {
   residential: [
     { name: "address", label: "Service address", required: true, full: true },
     { name: "message", label: "Gate codes, can location, or notes", type: "textarea", full: true },
-  ],
-  junk: [
-    { name: "address", label: "Pickup address", required: true, full: true },
-    { name: "message", label: "What needs to go?", type: "textarea", required: true, full: true, placeholder: "e.g. old couch, mattress, 10 bags of yard waste" },
-  ],
-  cleaning: [
-    { name: "address", label: "Service address", required: true, full: true },
-    { name: "bins", label: "Number of bins", type: "number", required: true },
-    { name: "frequency", label: "How often?", type: "select", options: ["One-time", "Monthly", "Quarterly"] },
   ],
   vacation: [
     { name: "properties", label: "Number of properties", type: "number", required: true },

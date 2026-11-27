@@ -232,7 +232,7 @@ export const cities: City[] = [
     zips: ["43147"],
     areas: ["Olde Pickerington Village", "Sycamore Creek", "Windmiller", "Shawnee Crossing"],
     intro:
-      "We help Pickerington homeowners skip the weekly can haul and keep their bins clean and odor-free.",
+      "We help Pickerington homeowners skip the weekly can haul, rain or shine.",
   },
   {
     slug: "canal-winchester",

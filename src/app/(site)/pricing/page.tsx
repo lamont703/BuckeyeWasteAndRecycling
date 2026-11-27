@@ -6,7 +6,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Pricing for Trash Can to Curb & Valet Trash Service",
-  "Simple monthly plans for trash can to curb service in Columbus, OH, one-time curb visits, junk removal and custom per-unit valet trash pricing for apartments.",
+  "Simple monthly plans for trash can to curb service in Columbus, OH, one-time curb visits and custom per-unit valet trash pricing for apartments.",
   "/pricing",
 );
 
@@ -27,7 +27,7 @@ export default function PricingPage() {
       </Section>
 
       <Section className="bg-cream">
-        <SectionHeading center eyebrow="On demand" title="One-time services, no subscription required" />
+        <SectionHeading center eyebrow="On demand" title="One-time curb service, no subscription required" />
         <div className="mt-12">
           <OnDemandCards />
         </div>
