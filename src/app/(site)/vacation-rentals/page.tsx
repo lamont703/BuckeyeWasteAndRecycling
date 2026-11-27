@@ -41,7 +41,7 @@ export default function VacationRentalsPage() {
           items={[
             { icon: "🏈", title: "Game-day ready", body: "Book extra pickups around big weekends and events." },
             { icon: "📸", title: "Photo confirmation", body: "Proof of service you can share with co-hosts or owners." },
-            { icon: "🧼", title: "Bin cleaning add-on", body: "Fresh, odor-free bins so guests never notice them." },
+            { icon: "♻️", title: "Recycling sorted", body: "Recycling goes out on the right day so overflow never piles up between stays." },
           ]}
         />
       </Section>

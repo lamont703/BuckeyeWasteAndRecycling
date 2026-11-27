@@ -33,6 +33,18 @@ export const valetFaqs: Faq[] = [
     a: "Valet trash is doorstep trash collection for apartment communities. Residents set a bagged trash container outside their door during a set window, and our porters collect it and take it to the compactor or dumpster.",
   },
   {
+    q: "Is valet trash the same as an apartment trash pickup service?",
+    a: "Yes. Valet trash, doorstep trash pickup and apartment trash pickup service all describe the same thing: a porter collects each resident's trash at their door on set nights, so nobody has to carry bags to the dumpster.",
+  },
+  {
+    q: "Who pays for valet trash, the property or the residents?",
+    a: "The property contracts with us. Many communities offer it as an amenity and pass the cost through to residents as a monthly fee on the lease.",
+  },
+  {
+    q: "How long does it take to start valet trash at our community?",
+    a: "About two weeks. We walk the property, recommend a schedule and package, then launch with doorstep containers and resident flyers so everyone knows how it works.",
+  },
+  {
     q: "How many nights a week do you collect?",
     a: "Most communities choose 5 nights a week (Sunday through Thursday), but we build the schedule around your property, from 3 to 7 nights.",
   },
@@ -56,10 +68,6 @@ export const valetFaqs: Faq[] = [
 
 export const generalFaqs: Faq[] = [
   ...residentialFaqs,
-  {
-    q: "Do you clean trash bins?",
-    a: "Yes. We pressure-wash, sanitize and deodorize your bins right at the curb using hot water, then leave them to dry. You can book one-time, monthly or quarterly cleanings.",
-  },
   {
     q: "What junk do you haul away?",
     a: "Furniture, mattresses, appliances, yard waste, construction debris, move-out leftovers, garage and basement cleanouts. We can't take hazardous materials such as paint, chemicals or propane tanks.",

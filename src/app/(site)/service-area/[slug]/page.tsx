@@ -16,11 +16,18 @@ export async function generateMetadata({ params }: PageProps<"/service-area/[slu
   const { slug } = await params;
   const city = getCity(slug);
   if (!city) return {};
-  return pageMeta(
-    `Valet Trash & Trash Can Service in ${city.name}, OH`,
-    `Trash can to curb service, apartment valet trash, bin cleaning and junk removal in ${city.name}, Ohio (${city.zips.join(", ")}). Local, photo-verified and ${site.trialDays} days free.`,
-    `/service-area/${city.slug}`,
-  );
+  // Pages with a local trash guide target "trash pickup <city>" searches; the rest stay service-led.
+  return city.trash
+    ? pageMeta(
+        `${city.name}, OH Trash Pickup Day, Rules & Can-to-Curb Service`,
+        `Who picks up trash in ${city.name}, Ohio, what day, when cans go out and come back in, holiday delays and bulk pickup. Or let us roll your cans to the curb and back, ${site.trialDays} days free.`,
+        `/service-area/${city.slug}`,
+      )
+    : pageMeta(
+        `Trash Can to Curb & Valet Trash Service in ${city.name}, OH`,
+        `Trash can to curb service for homes and doorstep valet trash for apartments in ${city.name}, Ohio (${city.zips.join(", ")}). Local, photo-verified and ${site.trialDays} days free.`,
+        `/service-area/${city.slug}`,
+      );
 }
 
 export default async function CityPage({ params }: PageProps<"/service-area/[slug]">) {
@@ -30,7 +37,18 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
 
   const nearby = cities.filter((c) => c.slug !== city.slug).slice(0, 8);
   const areaList = city.areas.join(", ");
+  const t = city.trash;
+  const guideFaqs = t
+    ? [
+        { q: `Who picks up trash in ${city.name}, Ohio?`, a: t.collector },
+        { q: `What day is trash pickup in ${city.name}?`, a: t.pickupDay },
+        { q: `When can trash cans go out, and when must they come back in, in ${city.name}?`, a: t.setOut },
+        { q: `Does ${city.name} trash pickup change on holidays?`, a: t.holidays },
+        { q: `How does bulk pickup work in ${city.name}?`, a: t.bulk },
+      ]
+    : [];
   const faqs = [
+    ...guideFaqs,
     {
       q: `Do you offer trash can to curb service in ${city.name}?`,
       a: `Yes. We roll trash and recycling cans to the curb and back for homes throughout ${city.name}, including ${areaList}. Plans start at $${residentialPlans[0].price}/month with ${site.trialDays} days free.`,
@@ -62,16 +80,65 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
         <SplitFeature
           eyebrow={`Serving ${city.name}`}
           title={`Local trash services for ${city.name} homes and apartments`}
-          body={`Buckeye Waste and Recycling serves ${areaList} and the rest of ${city.name}. Every visit is handled by our background-checked Columbus team and confirmed with a photo.`}
+          body={`Buckeye Waste and Recycling serves ${areaList} and the rest of ${city.name}. We don't replace your city's trash collection. We make sure your cans are out on time and back where they belong. Every visit is handled by our background-checked Columbus team and confirmed with a photo.`}
           bullets={[
             `Trash can to curb service in ${city.name}`,
             `Valet trash for ${city.name} apartment communities`,
-            "Curbside bin cleaning",
-            "Junk and bulk item removal",
+            "Cans back up the driveway after the truck comes",
+            "Vacation holds and one-time visits",
           ]}
           visual={<HomeScene className="w-full drop-shadow-xl" />}
         />
       </Section>
+
+      {t && (
+        <Section className="bg-sand/60">
+          <SectionHeading
+            center
+            eyebrow={`${city.name} trash guide`}
+            title={`Trash pickup in ${city.name}: day, rules and holidays`}
+            intro={`What every ${city.name} household needs to know about trash day, from the city's own rules.`}
+          />
+          <dl className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
+            {[
+              ["Who collects", t.collector],
+              ["Pickup day", t.pickupDay],
+              ["Trash, recycling & yard waste", t.frequency],
+              ["Set-out & take-in rules", t.setOut],
+              ["Holiday weeks", t.holidays],
+              ["Bulk items", t.bulk],
+              ["Carts", t.carts],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-3xl bg-white p-6 ring-1 ring-line">
+                <dt className="text-sm font-bold uppercase tracking-wide text-leaf-700">{label}</dt>
+                <dd className="mt-2 leading-7 text-ink">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mx-auto mt-6 max-w-4xl text-center text-sm text-muted">
+            {t.lookup && (
+              <>
+                Look up your day:{" "}
+                <a href={t.lookup.url} className="font-semibold text-leaf-700 underline" rel="noopener" target="_blank">
+                  {t.lookup.label}
+                </a>
+                .{" "}
+              </>
+            )}
+            Source:{" "}
+            <a href={t.source.url} className="underline" rel="noopener" target="_blank">
+              {t.source.label}
+            </a>
+            , checked {t.checked}. Rules can change, so the city&apos;s page is the final word.
+          </p>
+          <div className="mt-8 text-center">
+            <p className="text-lg font-semibold text-ink">Rather not keep track of it all? We roll your cans out and bring them back on schedule.</p>
+            <div className="mt-4">
+              <Button href="/get-started">Start {site.trialDays}-day free trial</Button>
+            </div>
+          </div>
+        </Section>
+      )}
 
       <Section className="bg-cream">
         <SectionHeading center eyebrow="Plans" title={`Can-to-curb plans in ${city.name}`} />
@@ -83,7 +150,7 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
       <Section>
         <SectionHeading center eyebrow="On demand" title={`One-time services in ${city.name}`} />
         <div className="mt-12">
-          <OnDemandCards />
+          <OnDemandCards exclude={["Junk & Bulk Removal"]} />
         </div>
       </Section>
 
@@ -115,7 +182,7 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
         data={serviceSchema({
           name: `Trash Can to Curb and Valet Trash Service in ${city.name}, OH`,
           path: `/service-area/${city.slug}`,
-          description: `Trash can to curb service, apartment valet trash, bin cleaning and junk removal in ${city.name}, Ohio (ZIP ${city.zips.join(", ")}).`,
+          description: `Trash can to curb service and apartment valet trash in ${city.name}, Ohio (ZIP ${city.zips.join(", ")}).`,
           area: `${city.name}, OH`,
           offers: planOffers,
         })}

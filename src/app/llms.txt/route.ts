@@ -30,7 +30,6 @@ ${site.name} (${site.shortName}) is a locally owned trash service company based 
 
 - [Valet trash for apartments](${link("/valet-trash")}): doorstep trash and recycling pickup 3 to 7 nights a week for apartment and townhome communities, with nightly service reports and photo violation reporting. Quoted per unit, per month.
 - [Trash can to curb](${link("/can-to-curb")}): cans rolled to the curb the evening before pickup and returned after collection, with a photo text each visit.
-- [Bin cleaning](${link("/bin-cleaning")}): curbside hot-water wash, sanitize and deodorize; one-time, monthly or quarterly.
 - [Junk & bulk removal](${link("/junk-removal")}): furniture, appliances, yard waste and cleanouts, usually within 24 to 48 hours. No hazardous materials.
 - [Vacation rentals](${link("/vacation-rentals")}): can service and overflow pickups for Airbnb and VRBO hosts.
 
@@ -48,6 +47,25 @@ ${valetTiers.map((t) => `- ${t.name}: ${t.features.join("; ")}.`).join("\n")}
 ## Service area
 
 ${cities.map((c) => `- [${c.name}, OH](${link(`/service-area/${c.slug}`)}) (${c.county}): ZIP ${c.zips.join(", ")}`).join("\n")}
+
+## Local trash pickup guides
+
+Buckeye doesn't haul household trash; each city or its contracted hauler does. Buckeye rolls cans to the curb and back around that schedule. Facts below come from each city's official trash page.
+
+${cities
+  .filter((c) => c.trash)
+  .map((c) => {
+    const t = c.trash!;
+    return `### Trash pickup in ${c.name}, OH (${link(`/service-area/${c.slug}`)})
+- Collector: ${t.collector}
+- Pickup day: ${t.pickupDay}
+- Frequency: ${t.frequency}
+- Set-out rules: ${t.setOut}
+- Holidays: ${t.holidays}
+- Bulk items: ${t.bulk}
+- Source: ${t.source.url} (checked ${t.checked})`;
+  })
+  .join("\n\n")}
 
 ## Frequently asked questions
 

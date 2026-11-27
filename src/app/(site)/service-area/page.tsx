@@ -17,7 +17,7 @@ export default function ServiceAreaPage() {
       <PageHero path="/service-area"
         eyebrow="Service area"
         title="Serving Columbus and Central Ohio"
-        intro="Valet trash, can-to-curb, bin cleaning and junk removal across Franklin, Delaware, Fairfield, Licking and Union counties."
+        intro="Trash can to curb service and apartment valet trash across Franklin, Delaware, Fairfield, Licking and Union counties."
       />
       <Section>
         <div className="mb-12 flex justify-center">

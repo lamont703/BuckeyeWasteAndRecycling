@@ -57,7 +57,7 @@ export default function HowItWorksPage() {
           reverse
           eyebrow="You're in control"
           title="Change anything with a quick text"
-          body={`Skip a week, add a can, book a bin cleaning or schedule a bulk pickup. Just text or call ${site.phone} and a real person in Columbus takes care of it.`}
+          body={`Skip a week, add a can or pause for vacation. Just text or call ${site.phone} and a real person in Columbus takes care of it.`}
           visual={<PhoneNotice />}
         />
         <div className="mt-16">

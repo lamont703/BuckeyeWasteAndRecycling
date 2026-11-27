@@ -124,29 +124,6 @@ export function PhoneNotice({ className = "" }: { className?: string }) {
   );
 }
 
-export function BinCleanScene({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 560 420" className={className} role="img" aria-label="A trash bin being pressure washed and sanitized">
-      <rect width="560" height="420" rx="32" fill="#eef7f1" />
-      <circle cx="280" cy="200" r="150" fill="#d6ecdd" />
-      <g transform="translate(225 140)">
-        <Bin x={0} y={0} color="#1d6a3d" lid="#17532f" scale={2.6} />
-      </g>
-      {[[150, 120], [170, 170], [140, 220], [400, 130], [420, 190], [390, 250]].map(([cx, cy], i) => (
-        <g key={i} transform={`translate(${cx} ${cy})`}>
-          <path d="M0 -14 L4 -4 L14 0 L4 4 L0 14 L-4 4 L-14 0 L-4 -4z" fill="#ffffff" />
-        </g>
-      ))}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <circle key={i} cx={190 + i * 45} cy={360 + (i % 2) * 10} r={10 + (i % 3) * 4} fill="#ffffff" opacity=".85" />
-      ))}
-      <text x="280" y="60" fontSize="22" textAnchor="middle" fill="#17532f" fontWeight="800">
-        Washed · Sanitized · Deodorized
-      </text>
-    </svg>
-  );
-}
-
 export function TruckScene({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 560 420" className={className} role="img" aria-label="A Buckeye junk removal truck loaded with furniture">

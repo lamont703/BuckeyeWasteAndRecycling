@@ -5,7 +5,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta(
   "Contact Us",
-  "Call, text or email Buckeye Waste and Recycling for trash can service, valet trash, bin cleaning or junk removal in Columbus, OH.",
+  "Call, text or email Buckeye Waste and Recycling for trash can to curb service, apartment valet trash or junk removal in Columbus, OH.",
   "/contact",
 );
 
