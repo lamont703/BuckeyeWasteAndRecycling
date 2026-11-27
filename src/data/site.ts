@@ -97,13 +97,6 @@ export const onDemand = [
     href: "/get-started?service=one-time",
     description: "Out of town or just one busy week? We'll roll your cans out and back, no subscription.",
   },
-  {
-    name: "Junk & Bulk Removal",
-    from: 89,
-    unit: "minimum load",
-    href: "/junk-removal",
-    description: "Furniture, appliances, yard waste, move-outs and garage cleanouts hauled away.",
-  },
 ];
 
 export const valetTiers = [
@@ -126,7 +119,6 @@ export const valetTiers = [
       "Doorstep recycling collection",
       "Violation reporting with photos",
       "Compactor and dumpster area tidy-up",
-      "Discounted bulk item removal",
     ],
   },
   {
@@ -136,7 +128,6 @@ export const valetTiers = [
       "Everything in Complete",
       "Pet waste station servicing",
       "Breezeway and grounds litter pickup",
-      "Unit turn and move-out cleanouts",
       "Dedicated account manager",
     ],
   },

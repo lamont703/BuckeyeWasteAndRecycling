@@ -148,9 +148,9 @@ export default async function CityPage({ params }: PageProps<"/service-area/[slu
       </Section>
 
       <Section>
-        <SectionHeading center eyebrow="On demand" title={`One-time services in ${city.name}`} />
+        <SectionHeading center eyebrow="On demand" title={`One-time curb service in ${city.name}`} />
         <div className="mt-12">
-          <OnDemandCards exclude={["Junk & Bulk Removal"]} />
+          <OnDemandCards />
         </div>
       </Section>
 

@@ -123,29 +123,3 @@ export function PhoneNotice({ className = "" }: { className?: string }) {
     </div>
   );
 }
-
-export function TruckScene({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 560 420" className={className} role="img" aria-label="A Buckeye junk removal truck loaded with furniture">
-      <rect width="560" height="420" rx="32" fill="#f3ebdd" />
-      <rect x="0" y="330" width="560" height="90" rx="0" fill="#2b2f2c" />
-      <path d="M0 330h560v58a32 32 0 0 1-32 32H32A32 32 0 0 1 0 388z" fill="#2b2f2c" />
-      <rect x="70" y="160" width="270" height="150" rx="10" fill="#1d6a3d" />
-      <rect x="85" y="125" width="70" height="45" rx="6" fill="#8a5530" />
-      <rect x="165" y="105" width="90" height="65" rx="8" fill="#d9b48a" />
-      <rect x="262" y="135" width="60" height="35" rx="6" fill="#5a341a" />
-      <path d="M340 200h90l50 50v60H340z" fill="#17532f" />
-      <path d="M360 215h60l35 35h-95z" fill="#cfe7f5" />
-      <circle cx="140" cy="320" r="30" fill="#13201a" />
-      <circle cx="140" cy="320" r="12" fill="#c9c2b4" />
-      <circle cx="420" cy="320" r="30" fill="#13201a" />
-      <circle cx="420" cy="320" r="12" fill="#c9c2b4" />
-      <text x="205" y="245" fontSize="26" textAnchor="middle" fill="#ffffff" fontWeight="800">
-        BUCKEYE
-      </text>
-      <text x="205" y="272" fontSize="12" textAnchor="middle" fill="#d6ecdd" fontWeight="700" letterSpacing="2">
-        WASTE &amp; RECYCLING
-      </text>
-    </svg>
-  );
-}

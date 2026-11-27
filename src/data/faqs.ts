@@ -68,9 +68,5 @@ export const valetFaqs: Faq[] = [
 
 export const generalFaqs: Faq[] = [
   ...residentialFaqs,
-  {
-    q: "What junk do you haul away?",
-    a: "Furniture, mattresses, appliances, yard waste, construction debris, move-out leftovers, garage and basement cleanouts. We can't take hazardous materials such as paint, chemicals or propane tanks.",
-  },
   ...valetFaqs.slice(0, 3),
 ];
