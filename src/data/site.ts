@@ -9,8 +9,7 @@ export const site = {
   domain: "BuckeyeWR.com",
   phone: "(614) 900-0389",
   phoneHref: "tel:+16149000389",
-  // TODO: confirm the inbox the client wants leads sent to
-  email: "hello@buckeyewr.com",
+  email: "andrew@support.buckeyewr.com",
   region: "Greater Columbus, Ohio",
   hours: "Mon–Fri, 9am–5pm",
   // Machine-readable version of `hours` for structured data. Keep the two in sync.
